@@ -4,7 +4,7 @@ import GoogleMapReact from 'google-map-react';
 const footer = props => {
 
   return (
-    <div style={{padding:"10px",background:"#e0ded2", marginBottom:"50px"}}>
+    <div style={{padding:"10px",background:"#e0ded2", marginBottom:"20px"}}>
       <div>
             Στοιχεία επικοινωνίας
             <ul>
