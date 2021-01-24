@@ -24,6 +24,9 @@ export default () => (
       <li className={styles.navigationItem}>
         <Link to="/contact/" activeStyle={{color:"#7a7d68"}}>Το Σχολείο μας </Link>
       </li>
+      <li className={styles.navigationItem}>
+        <Link to="/files/" activeStyle={{color:"#7a7d68"}}>Αρχείο </Link>
+      </li>
     </ul>
   </nav>
 )
