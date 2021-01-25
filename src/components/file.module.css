@@ -1,0 +1,11 @@
+.fileImg {
+  border-radius: 3px;
+}
+
+.wrapper {
+  padding: 5px;
+}
+
+.wrapper:hover {
+  box-shadow: 2px 1px 80px -21px rgba(0, 0, 0, 0.3);
+}

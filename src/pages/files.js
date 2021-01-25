@@ -1,28 +1,24 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import styles from './blog.module.css'
 import Layout from '../components/layout'
-import ArticlePreview from '../components/article-preview'
+import FilePreview from '../components/FilePreview'
 
-class Files extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-
+const Files = (props) =>{
+  const files = props.data.allFile.edges
     return (
-      <Layout location={this.props.location}>
+      <Layout location={props.location}>
         <div style={{ background: '#fff' }}>
-          <Helmet title={siteTitle} />
-          <div className={styles.hero}>Αρχείο</div>
+          <Helmet title="Files" />
+          <div className={styles.hero}>Μουσικά Αρχεία</div>
           <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
+            <h2 className="section-headline">Πεντάγραμμο</h2>
             <ul className="article-list">
-              {posts.map(({ node }) => {
+              {files.map(({ node }) => {
                 return (
                   <li key={node.slug}>
-                    <ArticlePreview article={node} />
+                    <FilePreview name={node.name} time={node.modifiedTime}url={node.publicURL} size={node.size}/>
                   </li>
                 )
               })}
@@ -31,32 +27,23 @@ class Files extends React.Component {
         </div>
       </Layout>
     )
-  }
 }
 
 export default Files
 
 export const pageQuery = graphql`
-  query Query  {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      edges {
-        node {
-          title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
-        }
+query AllFilesQuery {
+  allFile(filter: {relativeDirectory: {eq: "pentagrammo"}}) {
+    edges {
+      node {
+        extension
+        name
+        id
+        modifiedTime(fromNow: true)
+        publicURL
+        size
       }
     }
   }
+}
 `
