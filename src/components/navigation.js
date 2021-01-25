@@ -27,6 +27,9 @@ export default () => (
       <li className={styles.navigationItem}>
         <Link to="/files/" activeStyle={{color:"#7a7d68"}}>Αρχείο </Link>
       </li>
+      <li className={styles.navigationItem}>
+        <Link to="/people/" activeStyle={{color:"#7a7d68"}}>Εκπαιδευτικοί </Link>
+      </li>
     </ul>
   </nav>
 )
