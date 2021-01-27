@@ -11,37 +11,39 @@ const People = props => {
 
 
 
-
   return (
     <Layout location={props.location}>
     <div style={{ background: '#fff' }}>
       <Helmet title="People" />
       <div className={styles.hero}>Οι εκπαιδευτικοί μας</div>
       <div className="wrapper">
-        <ul className="flex flex-wrap justify-around">
+        <ul className="people-list">
           {people.map(({ node }) => {
             return (
-              <li key={node.id} className="mb-16  p-2 border-b-2">
+              <li key={node.id} className="mb-8 p-2 border-b-2 bg-gray-400 rounded">
                 {
                   node.heroImage
                   &&
-                <Img className="w-32 h-32 rounded-full shadow-sm mx-auto"  alt="professor_img" fluid={node.heroImage.fluid}/>
+                  <div className="p-8">
+                  <Img className="w-64 h-64 md:w-32 md:h-32 lg:w-64 lg:h-64 rounded-full shadow-sm mx-auto"  alt="professor_img" fluid={node.heroImage.fluid}/>
+                  </div>
                 }
-                <div className="text-center mt-4">
-
-                <p className="text-md">
-                {node.name}
-                </p>
+                <div className="text-center ">
+                    <p className="text-lg">
+                    {node.name}
+                    </p>    
+                </div>  
                 <div className="flex flex-wrap justify-center">
-                <p className="text-gray-500 text-sm mr-4 ">
-                  {node.company} 
-                  </p>
-                <p className="text-indigo-400  text-sm">
-                {node.title}
-                </p>
+                  <div className="bg-blue-300	 px-2 rounded">
+                    <p className="text-blue-600">{node.company}</p>
+                  </div>
+                  <div className="bg-green-500	 ml-2 px-2 rounded">
+                    <p className="text-green-700	">{node.title}</p>
+                  </div>
                 </div>
+                <div className="flex flex-wrap justify-center mt-2">
+                <p className="text-md text-gray-700	text-center">{node.shortBio.shortBio}</p>
                 </div>
-
               </li>
             )
           })}
